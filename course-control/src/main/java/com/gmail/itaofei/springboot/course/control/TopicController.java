@@ -3,6 +3,7 @@ package com.gmail.itaofei.springboot.course.control;
 import com.gmail.itaofei.springboot.course.ITopicService;
 import com.gmail.itaofei.springboot.course.domain.Topic;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,9 @@ public class TopicController {
     /*
     * Get all topics.
     */
-    @RequestMapping("/topics")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/topics")
     public List<Topic> getAllTopics() {
 
         return topicService.getAllTopics();
@@ -30,7 +33,9 @@ public class TopicController {
     /*
     * Get topic by id.
     */
-    @RequestMapping("/topics/{id}")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/topics/{id}")
     public Topic getTopic(
             @PathVariable("id") String id) {
 
@@ -38,20 +43,24 @@ public class TopicController {
     }
 
     /*
-    * TODO: Get topics by blur name and description.
+    * Get topics by blur name or description.
     */
-    @RequestMapping("/topics?search/")
-    public List<Topic> getTopics(
-            @MatrixVariable String name,
-            @MatrixVariable String description) {
+    @RequestMapping(
+            method= RequestMethod.GET,
+            value="/search/topic/{matrix}")
+    public List<Topic> getTopics(@MatrixVariable Map<String,String> matrix) {
 
-        return topicService.getTopics(name, description);
+        String name = matrix.get("name");
+        String description = matrix.get("description");
+        return topicService.searchTopics(name, description);
     }
 
     /*
     * Add topic.
     */
-    @RequestMapping(method = RequestMethod.POST, value = "/topics")
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/topics")
     public void addTopic(
             @RequestBody Topic topic) {
 
@@ -61,7 +70,9 @@ public class TopicController {
     /*
     * Update topic.
     */
-    @RequestMapping(method = RequestMethod.PUT, value = "/topics")
+    @RequestMapping(
+            method = RequestMethod.PUT,
+            value = "/topics")
     public void updateTopic(
             @RequestBody Topic topic) {
 
@@ -71,7 +82,9 @@ public class TopicController {
     /*
     * Delete topic.
     */
-    @RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
+    @RequestMapping(
+            method = RequestMethod.DELETE,
+            value = "/topics/{id}")
     public void deleteTopic(
             @PathVariable("id") String id) {
 

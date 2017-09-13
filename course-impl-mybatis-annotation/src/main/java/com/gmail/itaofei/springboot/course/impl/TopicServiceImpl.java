@@ -26,12 +26,6 @@ public class TopicServiceImpl implements ITopicService {
     }
 
     @Override
-    public List<Topic> getTopics(String name, String description) {
-
-        return topicMapper.search(name, description);
-    }
-
-    @Override
     public void addTopic(Topic topic) {
 
         topicMapper.insertTopic(topic);
@@ -50,4 +44,9 @@ public class TopicServiceImpl implements ITopicService {
         topicMapper.deleteTopic(id);
     }
 
+    @Override
+    public List<Topic> searchTopics(String name, String description) {
+
+        return topicMapper.search(name, description);
+    }
 }

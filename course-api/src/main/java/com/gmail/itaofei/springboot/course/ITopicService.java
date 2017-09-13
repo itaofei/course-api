@@ -16,5 +16,5 @@ public interface ITopicService {
 
     public void deleteTopic(String id);
 
-    public List<Topic> getTopics(String name, String description);
+    public List<Topic> searchTopics(String name, String description);
 }

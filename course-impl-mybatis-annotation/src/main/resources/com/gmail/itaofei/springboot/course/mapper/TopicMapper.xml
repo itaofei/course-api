@@ -8,10 +8,12 @@
         select * from topic
         <where>
             <if test="name != null">
-                name like #{name}
+                <bind name="pname" value="'%' + name + '%'" />
+                name like #{pname}
             </if>
             <if test="description != null">
-                and description like #{description}
+                <bind name="pdescription" value="'%' + description + '%'" />
+                and description like #{pdescription}
             </if>
         </where>
     </select>

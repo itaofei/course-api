@@ -27,6 +27,7 @@ public interface TopicMapper {
     @Delete("delete from topic where id=#{id}")
     void deleteTopic(String id);
 
+    // TODO: sql in xml config
     List<Topic> search(@Param("name") String name,
                        @Param("description") String description);
 
