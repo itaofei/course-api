@@ -38,7 +38,7 @@ public class TopicController {
     }
 
     /*
-    * Get topics by blur name and description.
+    * TODO: Get topics by blur name and description.
     */
     @RequestMapping("/topics?search/")
     public List<Topic> getTopics(
