@@ -31,6 +31,15 @@ public class DefaultTopicService implements ITopicService {
     }
 
     @Override
+    public List<Topic> searchTopics(String name, String description) {
+
+        if (true) {
+            throw new UnsupportedOperationException();
+        }
+        return null;
+    }
+
+    @Override
     public void addTopic(Topic topic) {
 
         topics.add(topic);
@@ -51,11 +60,6 @@ public class DefaultTopicService implements ITopicService {
     public void deleteTopic(String id) {
 
         topics.removeIf(t -> t.getId().equals(id));
-    }
-
-    @Override
-    public List<Topic> getTopics(String name, String description) {
-        return null;
     }
 
 }
