@@ -12,7 +12,9 @@ public interface ITopicService {
 
     public void addTopic(Topic topic);
 
-    public void updateTopic(String id, Topic topic);
+    public void updateTopic(Topic topic);
 
     public void deleteTopic(String id);
+
+    public List<Topic> getTopics(String name, String description);
 }

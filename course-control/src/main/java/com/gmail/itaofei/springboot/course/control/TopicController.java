@@ -4,6 +4,7 @@ import com.gmail.itaofei.springboot.course.ITopicService;
 import com.gmail.itaofei.springboot.course.domain.Topic;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,16 +31,29 @@ public class TopicController {
     * Get topic by id.
     */
     @RequestMapping("/topics/{id}")
-    public Topic getTopic(@PathVariable("id") String id) {
+    public Topic getTopic(
+            @PathVariable("id") String id) {
 
         return topicService.getTopic(id);
+    }
+
+    /*
+    * Get topics by blur name and description.
+    */
+    @RequestMapping("/topics?search/")
+    public List<Topic> getTopics(
+            @MatrixVariable String name,
+            @MatrixVariable String description) {
+
+        return topicService.getTopics(name, description);
     }
 
     /*
     * Add topic.
     */
     @RequestMapping(method = RequestMethod.POST, value = "/topics")
-    public void addTopic(@RequestBody Topic topic) {
+    public void addTopic(
+            @RequestBody Topic topic) {
 
         topicService.addTopic(topic);
     }
@@ -47,19 +61,23 @@ public class TopicController {
     /*
     * Update topic.
     */
-    @RequestMapping(method = RequestMethod.PUT, value = "/topics/{id}")
-    public void updateTopic(@RequestBody Topic topic, @PathVariable("id") String id) {
+    @RequestMapping(method = RequestMethod.PUT, value = "/topics")
+    public void updateTopic(
+            @RequestBody Topic topic) {
 
-        topicService.updateTopic(id, topic);
+        topicService.updateTopic(topic);
     }
 
     /*
     * Delete topic.
     */
     @RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
-    public void deleteTopic(@PathVariable("id") String id) {
+    public void deleteTopic(
+            @PathVariable("id") String id) {
 
         topicService.deleteTopic(id);
     }
+
+
 
 }

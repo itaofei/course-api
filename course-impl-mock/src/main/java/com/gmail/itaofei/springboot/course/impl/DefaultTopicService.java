@@ -37,10 +37,10 @@ public class DefaultTopicService implements ITopicService {
     }
 
     @Override
-    public void updateTopic(String id, Topic topic) {
+    public void updateTopic(Topic topic) {
 
         for (int i = 0; i < topics.size(); i++) {
-            if (topics.get(i).getId().equals(id)) {
+            if (topics.get(i).getId().equals(topic.getId())) {
                 topics.set(i, topic);
                 return;
             }
@@ -51,6 +51,11 @@ public class DefaultTopicService implements ITopicService {
     public void deleteTopic(String id) {
 
         topics.removeIf(t -> t.getId().equals(id));
+    }
+
+    @Override
+    public List<Topic> getTopics(String name, String description) {
+        return null;
     }
 
 }

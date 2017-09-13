@@ -26,18 +26,28 @@ public class TopicServiceImpl implements ITopicService {
     }
 
     @Override
+    public List<Topic> getTopics(String name, String description) {
+
+        return topicMapper.search(name, description);
+    }
+
+    @Override
     public void addTopic(Topic topic) {
 
         topicMapper.insertTopic(topic);
     }
 
     @Override
-    public void updateTopic(String id, Topic topic) {
+    public void updateTopic(Topic topic) {
 
+        topicMapper.updateTopic(topic);
     }
+
 
     @Override
     public void deleteTopic(String id) {
 
+        topicMapper.deleteTopic(id);
     }
+
 }
